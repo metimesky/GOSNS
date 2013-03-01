@@ -1,0 +1,16 @@
+{{define "LeftMenu"}}
+<li><a href="/admin/group/cate" >小组分类</a></li>
+<li><a href="/admin/group/group">小组管理</a></li>
+<li><a href="/admin/group/group?op=showadd" class="active">添加小组</a></li>
+{{end}}
+  
+{{define "Main"}}
+  <form action="/admin/group/group?op=add" method="post" class="form-horizontal maetb">
+    <table>
+     <tr><td width="80px">分类</td><td><select name="cateid">{{range .cates}}<option value="{{.Id_.Hex}}">{{.Catename}}</option>{{end}}</select></td></tr>
+      <tr><td>组名</td><td><input type="text" name="groupname"  /></td></tr>
+      <tr><td>会员名称</td><td><input type="text"  name="role_user"></td></tr>
+      <tr><td>&nbsp;&nbsp;</td><td><input  type="submit" class="btn btn-primary"/></td></tr>
+    </table>
+  </form>
+{{end}}

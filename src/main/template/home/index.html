@@ -1,0 +1,32 @@
+{{define "Title"}}
+   <title>首页</title>
+   <link rel="stylesheet" href="/static/css/index.css" />
+{{end}}
+
+
+{{define "Main"}}
+  <div class="block">
+   <div class="topb">
+     <div class="title"><h3>最新资讯</h3></div>
+      {{range .alist}}<li><a href="/article/show/{{.Id_.Hex}}.html">{{.Title}}</a></li>{{end}}
+   </div>
+    <div class="topb">
+     <div class="title"><h3>热门帖子</h3></div>
+      {{range .alist}}<li><a href="/article/show/{{.Id_.Hex}}.html">{{.Title}}</a></li>{{end}}
+   </div>
+    <div style="clear:both"></div>
+  </div>
+  
+  <div class="allcg">
+  {{range .cate}}
+  <div class="gcate"><div class="gcate_title">{{.Catename}}</div>
+  <div class="glist">{{range .Groups}}<li><a href="/group/g/{{.Id_.Hex}}">{{.Groupname}}</a></li>{{end}}<div style="clear:both"></div></div></div>
+  {{end}}
+  </div>
+{{end}}
+
+{{define "TopMenu"}}
+<li ><a  href="/" class="topcur">首页</a></li><li><a href="/article/list" >文章中心</a></li><li><a href="/group/list">讨论小组</a></li><li><a href="#">图册精选</a></li>
+<li><a href="#">社区问答</a></li><li><a href="/admin" target="_blank">后台管理</a></li>
+{{end}}
+

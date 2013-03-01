@@ -1,0 +1,61 @@
+{{define "Title"}}
+<script type="text/javascript" src="/static/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/static/js/xhEditor/xheditor-1.1.14-zh-cn.min.js"></script>
+<script type="text/javascript" src="/static/js/xhEditor/xheditor_plugins/ubb.min.js"></script>
+<link rel="stylesheet" href="/static/css/index.css" />
+<title>{{.article.Title}}</title>
+{{end}}
+</head>
+{{define "Main"}}
+   <div class="block left article">
+     <h1>{{.article.Title}}</h1>
+     {{$v:=.view}}
+    <div class="article_info">标签：{{range .tags}}<span class="label label-info">{{.}}</span> {{end}}发布时间:{{$v.FormatTime  .article.Id_}}</div>
+     <div> {{.article.Content}}</div>
+     <div class="comment">
+      {{range .comment}}<div class="commuser">{{.User.Username}}&nbsp;&nbsp;{{$v.FormatTime  .Id_}}</div><div class="msg">{{.Content}}</div>{{end}}
+     </div>
+     <br />
+     <form id="frmDemo" action="/article/comment" Method="POST" >
+      	<input type="hidden" name="articleid" value="{{.article.Id_.Hex}}" />
+      	<input type="hidden" name="p" value="0" />
+           <textarea id="elm1" name="text" style="width:90%; height:100px;"></textarea>
+ 	</form>
+   </div>  
+   
+   <div class="block right">
+     <h4 style="border-bottom:1px solid #ccc; line-height:30px; margin-top:0px;">相关文章</h4>
+   </div>
+  
+  
+    
+<script type="text/javascript">
+var plugins={
+		Code:{c:'btnCode',t:'插入代码',h:1,e:function(){
+			var _this=this;
+			var htmlCode='<div><select id="xheCodeType"><option value="html">HTML/XML</option><option value="js">Javascript</option><option value="css">CSS</option><option value="php">PHP</option><option value="java">Java</option><option value="py">Python</option><option value="pl">Perl</option><option value="rb">Ruby</option><option value="cs">C#</option><option value="c">C++/C</option><option value="vb">VB/ASP</option><option value="">其它</option></select></div><div><textarea id="xheCodeValue" wrap="soft" spellcheck="false" style="width:300px;height:100px;" /></div><div style="text-align:right;"><input type="button" id="xheSave" value="确定" /></div>';			var jCode=$(htmlCode),jType=$('#xheCodeType',jCode),jValue=$('#xheCodeValue',jCode),jSave=$('#xheSave',jCode);
+			jSave.click(function(){
+				_this.loadBookmark();
+				_this.pasteText('[code='+jType.val()+']\r\n'+jValue.val()+'\r\n[/code]');
+				_this.hidePanel();
+				return false;	
+			});
+			_this.saveBookmark();
+			_this.showDialog(jCode);
+		}},
+	},emots={
+		
+		
+	};
+function submitForm(){$('#frmDemo').submit();}
+$('#elm1').xheditor({plugins:plugins,tools:'Bold,Img,Emot,Link,Unlink,Source',showBlocktag:false,forcePtag:false,beforeSetSource:ubb2html,beforeGetSource:html2ubb,emots:emots,emotMark:true,shortcuts:{'ctrl+enter':submitForm}});
+</script>
+{{end}}
+
+
+{{define "TopMenu"}}
+<li ><a  href="/">首页</a></li><li><a href="/article/list" class="topcur">文章中心</a></li><li><a href="/group/list">讨论小组</a></li><li><a href="#">图册精选</a></li>
+<li><a href="#">社区问答</a></li><li><a href="/admin" target="_blank">后台管理</a></li>
+{{end}}
+
+

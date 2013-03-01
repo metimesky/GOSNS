@@ -1,0 +1,22 @@
+{{define "Title"}}
+<link rel="stylesheet" href="/static/css/index.css" />
+<title>登陆-GOSNS</title>
+{{end}}
+
+{{define "Main"}}
+<div class="block">
+<center>
+<table>
+<form action="/user/login" method="post">
+<tr><td height="44">邮箱&nbsp;&nbsp;</td><td><input type="text"  style="width:250px;" class="input" name="email" /></td></tr>
+<tr><td height="44">密码&nbsp;&nbsp;</td><td><input type="text"  style="width:250px;" class="input" name="pwd"/></td></tr>
+<tr><td></td><td><input type="submit"  value="登陆"/></td></tr>
+</form>
+</table>
+</center></div>
+{{end}}
+
+{{define "TopMenu"}}
+<li ><a  href="/">首页</a></li><li><a href="/article/list" class="topcur">文章中心</a></li><li><a href="/group/list">讨论小组</a></li><li><a href="#">图册精选</a></li>
+<li><a href="#">社区问答</a></li><li><a href="/admin" target="_blank">后台管理</a></li>
+{{end}}

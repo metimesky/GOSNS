@@ -1,0 +1,50 @@
+
+{{define "Title"}}
+<link rel="stylesheet" href="/static/css/index.css" />
+<title>头像设置-用户中心-GOSNS</title>
+{{end}}
+
+{{define "Main"}}
+<div class="block">
+ <ul class="user_menu"><li><a href="?t=">基本资料</a></li><li class="user_menu_sel"><a href="?t=tx">头像设置</a></li><li><a href="#">修改密码</a></li><div style="clear:both"></div></ul>
+
+ <div style="padding:20px; text-align:center;"> 
+  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+        id="ImageUpload" width="560" height="400"
+        codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+        <param name="movie" value="/static/js/touxiang.swf" />
+        <param name="quality" value="high" />
+        <!-- 
+        flashVars的3个参数
+        url必选代表上传地址
+        photo代表用户头像图片url路径
+
+        也可调用页面js获取servlet上传地址，方法：getPostURL()
+        得到头像js方法 getPhotoURL()
+         -->
+        <param name="flashVars" value="url=/user/uptx&photo=photo" />
+        <param name="bgcolor" value="#ffffff" />
+        <param name="allowScriptAccess" value="sameDomain" />
+        <embed src="/static/js/touxiang.swf" quality="high" bgcolor="#ffffff"
+            width="560" height="400" name="ImageUpload" align="middle"
+            play="true"
+            flashVars="url=uptx&photo=js/1.png" 
+            loop="false"
+            quality="high"
+            allowScriptAccess="sameDomain"
+            type="application/x-shockwave-flash"
+            pluginspage="http://www.adobe.com/go/getflashplayer">
+        </embed>
+    </object>
+ </div>
+
+
+</div>
+{{end}}
+
+{{define "TopMenu"}}
+<li ><a  href="/">首页</a></li><li><a href="/article/list" class="topcur">文章中心</a></li><li><a href="/group/list">讨论小组</a></li><li><a href="#">图册精选</a></li>
+<li><a href="#">社区问答</a></li><li><a href="/admin" target="_blank">后台管理</a></li>
+{{end}}
+
+

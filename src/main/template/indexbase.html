@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{{template "Title" .}}
+</head>
+<body>
+<div class="topbar"><center><div class="topmainbar">
+<div class="toplogo"><i>GOSNS</i></div>
+<ul class="nav">{{template "TopMenu" .}}</ul>
+<div class="search"><input type="text" id="sipt" placeholder="搜索一下" x-webkit-speech /><button type="submit" id="ssear" aria-label="搜索"><img src="/static/skins/search.png" alt="search"></button></div>
+<div class="top_user">{{if .user}}<a id="user" href="/user/center">{{.user.Username}}</a>{{else}}<a href="/user/login">登陆</a><a href="#">注册</a>{{end}}</div>
+</div></center></div>
+
+<div class="main">
+{{template "Main" .}}
+</div>
+
+<div style="clear:both"></div>
+<div class="footer">
+手机客户端 | 关于我们 | 联系我们 | 用户条款 | 隐私声明 | 加入我们<br />
+Powered by GOSNS ©2003-2103 phpwind.com 浙B2-20070029
+</div>
+</body>
+</html>

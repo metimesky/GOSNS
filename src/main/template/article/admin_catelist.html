@@ -1,0 +1,51 @@
+{{define "LeftMenu"}}
+<li><a href="/admin/article/catelist" class="active">分类管理</a></li>
+<li><a href="/admin/article/add">添加文章</a></li>
+<li><a href="/admin/article/list">文章管理</a></li>
+<li><a href="/admin/article/comment">文章评论</a></li>
+{{end}}
+
+{{define "Main"}}
+ <h3 style="display:inline">文章分类</h3>
+ <input type="button" class="btn btn-primary" style="margin-left:20px; margin-bottom:5px;" value="添加分类" onclick="$('#daddcate').slideToggle()" />
+ <div id="daddcate"  style="display:none">
+   <form class="well form-inline" method="post" action="/admin/article/catelist?op=add">
+    <input type="text" class="input-small"  name="sortid" placeholder="排序序号">
+   <input type="text" class="input-small" name="catename" placeholder="分类名">
+   <button type="submit" class="btn">添加</button>
+   </form>
+ </div>
+
+<table class="table table-striped table-bordered table-condensed">
+<thead><tr><th width="50">序号</th><th>分类名</th><th width="100">操作</th></tr></thead>
+<tbody>
+{{range .cates}}<tr id="{{.Id_.Hex}}"><td>{{.Orderid}}</td><td>{{.Catename}}</td><td>
+<a href="/admin/article/catelist?op=del&delid={{.Id_.Hex}}">删除</a>
+</td></tr>{{end}}
+</tbody>
+</table>
+<script type="text/javascript">
+selvalue=""
+$(".table td").click(function(){
+  $(this).attr("contenteditable",true);
+	selvalue=$.trim($(this).html());
+});
+
+$(".table td").blur(function(){
+ if($.trim($(this).html())!=selvalue){
+   id=$(this).parent("tr").attr("id");
+   sortid=$(this).parent("tr").children("td").eq(0).html();
+   catename=$(this).parent("tr").children("td").eq(1).html();
+   poststr="/admin/article/catelist?id="+id+"&sortid="+sortid+"&catename="+catename+"&op=update";
+    $.get(poststr,function(data){
+	   if(data=="ok"){
+	   	alert("成功");
+	   }else{
+	   	alert("失败");
+	   }
+	});
+ }
+});
+</script>
+
+{{end}}

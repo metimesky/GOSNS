@@ -1,0 +1,26 @@
+{{define "Title"}}
+<link rel="stylesheet" href="/static/css/index.css" />
+<title>小组列表-GOSNS</title>
+<style>
+	dt{padding: 10px; font-weight: bold;}
+	dd{line-height: 30px; display: inline;}
+</style>
+{{end}}
+
+{{define "Main"}}
+<div class="block">
+   <dl>
+	{{range .cates}}
+       <dt>{{.Catename}}</dt>
+        {{range .Groups}}
+         <dd><a href="/group/g/{{.Id_.Hex}}">{{.Groupname}}</a></dd>
+        {{end}}
+	{{end}}
+   </dl>
+</div>
+{{end}}
+
+{{define "TopMenu"}}
+<li ><a  href="/">首页</a></li><li><a href="/article/list">文章中心</a></li><li><a href="/group/list" class="topcur">讨论小组</a></li><li><a href="#">图册精选</a></li>
+<li><a href="#">社区问答</a></li><li><a href="/admin" target="_blank">后台管理</a></li>
+{{end}}

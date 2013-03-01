@@ -1,0 +1,21 @@
+{{define "LeftMenu"}}
+<li><a href="/admin/article/catelist">分类管理</a></li>
+<li><a href="/admin/article/add" class="active">添加文章</a></li>
+<li><a href="/admin/article/list" >文章管理</a></li>
+<li><a href="/admin/article/comment">文章评论</a></li>
+{{end}}
+
+{{define "Main"}}
+ <script type="application/javascript" src="/static/js/xhEditor/xheditor-1.1.14-zh-cn.min.js"></script>
+ <form method="post" class="form-horizontal maetb">
+ <table>
+ <tr><td width="50">分类</td><td><select name="cateid">{{range .cates}}<option value="{{.Id_.Hex}}">{{.Catename}}</option>{{end}}</select></td></tr>
+ <tr><td>标题</td><td><input type="text" name="title" class="title" /></td></tr>
+ <tr><td valign="top">正文</td>
+ <td><textarea id="elm1" name="elm1" class="xheditor" rows="12" style="width: 100%"></textarea></td></tr>
+ <tr><td>标签</td><td><input  type="text"  name="tags"/></td></tr>
+ <tr><td>&nbsp;&nbsp;</td><td><input  type="submit" class="btn btn-primary"/></td></tr>
+ </table>
+ <input type="hidden" name="op"  value="add" />
+ </form>
+{{end}}

@@ -1,0 +1,23 @@
+{{define "Title"}}
+<title>文章中心</title>
+<link rel="stylesheet" href="/static/css/index.css" />
+<style type="text/css">
+.doclist li{ list-style:none;}
+.doclist li a{ color:#105CB6; text-decoration:none; font-size:14px;}
+.doclist li a:hover{ text-decoration:underline}
+</style>
+{{end}}
+
+{{define "Main"}}
+  <ul class="doclist">
+  {{range .alist}}
+    <li><a href="/article/show/{{.Id_.Hex}}.html">{{.Title}}</a></li>
+  {{end}}
+   <ul>
+{{end}}
+
+
+{{define "TopMenu"}}
+<li ><a  href="/">首页</a></li><li><a href="/article/list" class="topcur">文章中心</a></li><li><a href="/group/list">讨论小组</a></li><li><a href="#">图册精选</a></li>
+<li><a href="#">社区问答</a></li><li><a href="/admin">后台管理</a></li>
+{{end}}

@@ -1,0 +1,49 @@
+{{define "Title"}}
+   <title>{{.group.Groupname}}小组-GOSNS</title>
+   <link rel="stylesheet" href="/static/css/index.css" />
+{{end}}
+
+{{define "Main"}}
+ <div class="dir"><a href="/">首页</a>&nbsp;&gt;&nbsp;<a  href="/group/g/{{.group.Id_.Hex}}">{{.group.Groupname}}小组</a></div>
+ <div class="block left">
+ <div class="tlist">
+ {{$v:=.view}}
+  <table width="100%">
+  <tr><th>回复</th><th>点击</th><th>标题</th><th>时间</th><th>楼主</th><th>最后回复</th></tr>
+  {{range .posts}}
+   <tr>
+    <td width="30px">{{.Count_comment}}</td>
+    <td width="30px">{{.Count_click}}</td>
+    <td><a href="/group/p/{{.Id_.Hex}}">{{.Title}}</a></td>
+    <td>{{$v.FormatTime_t .Lasttime}}</td>
+    <td class="listuser"><a href="/i/{{.User.Id_.Hex}}">{{.User.Username}}</a></td>
+    <td class="listuser"><a href="/i/{{.User.Id_.Hex}}">{{.LastUser.Username}}</a></td>
+  </tr>
+  {{end}}
+  </table>
+ </div>
+  <form action="/group/add" method="post">
+   <table style="width:90%">
+    <tr><td width="50">标题</td><td><input type="text"  name="title" class="input" style="width:90%" value="测试"/></td></tr>
+    <tr><td>内容</td><td><textarea style="width:95%" name="text">aaaaaaaaaaaaaaaa</textarea></td></tr>
+    <tr><td>&nbsp;</td><td><input type="submit" value="提交" /></td></tr>
+   </table>
+   <input type="hidden" name="cateid" value="{{.group.Cateid.Hex}}" />
+   <input type="hidden" name="groupid" value="{{.group.Id_.Hex}}" />
+  </form>
+ </div>
+ 
+ <div class="block right">
+   {{if .user}}
+   <img src="/static/touxiang/{{.user.Face}}.jpg">
+   {{.user.Username}}
+   {{else}}没有登陆{{end}}
+ </div>
+{{end}}
+
+
+
+{{define "TopMenu"}}
+<li ><a  href="/" >首页</a></li><li><a href="/article/list" >文章中心</a></li><li><a href="/group/list" class="topcur">讨论小组</a></li><li><a href="#">图册精选</a></li>
+<li><a href="#">社区问答</a></li><li><a href="/admin" target="_blank">后台管理</a></li>
+{{end}}

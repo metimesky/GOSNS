@@ -1,0 +1,49 @@
+{{define "Title"}}
+<script type="text/javascript" src="/static/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/static/js/xhEditor/xheditor-1.1.14-zh-cn.min.js"></script>
+<script type="text/javascript" src="/static/js/xhEditor/xheditor_plugins/ubb.min.js"></script>
+<link rel="stylesheet" href="/static/css/index.css" />
+<title>{{.post.Title}}-GOSNS</title>
+{{end}}
+
+{{define "Main"}}
+{{$v:=.view}}
+{{$post:=.view.To .post}}
+<div class="dir"><a href="/">首页</a>&nbsp;&gt;&nbsp;<a  href="/group/g/{{$post.Group.Id_.Hex}}">{{$post.Group.Groupname}}小组</a></div>
+<div class="block left">
+<h1 class="ttitle">{{.post.Title}}</h1>
+ <div class="fflist">
+  <div class="ffuser"><img  src="/static/touxiang/{{$post.User.Face}}.jpg" /><br /><a href="#">{{$post.User.Username}}</a></div>
+  <div class="ffzw">
+  <div class="fftext">{{.post.Content}}</div>
+  <div class="linfo">举报 1楼 2013-01-29 14:43 <a href="#">回复</a></div>
+  </div><div style="clear:both"></div>
+ </div>
+ {{range  $index,$value:=.comm}}
+  <div class="fflist">
+   <div class="ffuser"><img  src="/static/touxiang/{{.User.Face}}.jpg" /><br /><a href="#">{{.User.Username}}</a></div>
+   <div class="ffzw">
+   <div class="fftext">{{.Content}}</div>
+   <div class="linfo">举报 {{$v.Num $index 2}}楼 2013-01-29 14:43 <a href="#">回复</a></div>
+   </div><div style="clear:both"></div>
+  </div> 
+ {{end}}
+ <div class="post_edit">
+  <form action="/group/post" method="post">
+  <table width="100%">
+   <tr><td  width="50px">回复</td><td><textarea style="width:95%" name="text"></textarea></td></tr>
+   <tr><td>&nbsp;</td><td><input type="submit" value="提交" /></td></tr>
+  </table>
+  <input type="hidden" name="rid" value="{{.post.Id_.Hex}}"/>
+  <input type="hidden" name="tid" value="{{.post.Id_.Hex}}" />
+  </form>
+ </div>
+</div>
+
+<div class="block right"></div>
+{{end}}
+
+{{define "TopMenu"}}
+<li ><a  href="/">首页</a></li><li><a href="/article/list" class="topcur">文章中心</a></li><li><a href="/group/list">讨论小组</a></li><li><a href="#">图册精选</a></li>
+<li><a href="#">社区问答</a></li><li><a href="/admin" target="_blank">后台管理</a></li>
+{{end}}
